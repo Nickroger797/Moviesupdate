@@ -688,19 +688,17 @@ async def cb_handler(client: Client, query: CallbackQuery):
         # Pehle "Loading..." type ka animation show karega
         loading_msg = await query.message.reply_text("👀")
         await asyncio.sleep(0.3)
-        await loading_msg.edit_text("🍃")
+        await loading_msg.edit_text("💧")
         await asyncio.sleep(0.3)
-        await loading_msg.edit_text("🪄")
-        await asyncio.sleep(0.3)
-        await loading_msg.edit_text("🫧")  # Final message
+        await loading_msg.edit_text("🌪️")  # Final message
         await asyncio.sleep(1)
         await loading_msg.delete()
 	    
         if len(data_parts) < 2:
             msg = await query.message.reply_text(
-                "🍿 If new movies & series are added, you'll be notified!\n\n"
-                "🔹 Join here: [🍿 All Movies Updates](https://t.me/moviesupdateshere)\n"
-                "🔹 Maintained by: [👨‍💻 Codex Bot Maker](https://t.me/codexbotmaker)"
+                "🍿 If new movies & series are added in my Database, you'll be notified in Movies update channel\n\n"
+                "🫧 Join here: [🍿 Movies Updates here🍿](https://t.me/moviesupdateshere)\n"
+                "🧬 Maintained by: [🃏 Codex Bot Maker](https://t.me/codexbotmaker)"
             )
         else:
             msg = await query.message.edit(
