@@ -686,13 +686,16 @@ async def cb_handler(client: Client, query: CallbackQuery):
         data_parts = query.data.split("*")  # Split data safely
 
         # Pehle "Loading..." type ka animation show karega
-        loading_msg = await query.message.reply_text("⏳ Processing...")
-
-        await asyncio.sleep(2)  # 2 sec ke liye wait karega
-
-        # Pehle wale loading message ko delete karega
+        loading_msg = await query.message.reply_text("👀")
+        await asyncio.sleep(0.3)
+        await loading_msg.edit_text("🍃")
+        await asyncio.sleep(0.3)
+        await loading_msg.edit_text("🪄")
+        await asyncio.sleep(0.3)
+        await loading_msg.edit_text("🫧")  # Final message
+        await asyncio.sleep(1)
         await loading_msg.delete()
-
+	    
         if len(data_parts) < 2:
             msg = await query.message.reply_text(
                 "🍿 If new movies & series are added, you'll be notified!\n\n"
