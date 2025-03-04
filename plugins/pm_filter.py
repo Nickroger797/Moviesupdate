@@ -681,23 +681,35 @@ async def cb_handler(client: Client, query: CallbackQuery):
         return await query.message.edit(script.REF_LINK.format(temp.U_NAME , clicker , PREMIUM_POINT) , reply_markup=InlineKeyboardMarkup([
 	    [InlineKeyboardButton('⋞ ʜᴏᴍᴇ', callback_data='start')]
         ]))
-	
+
     elif query.data.startswith('point'):
         data_parts = query.data.split("*")  # Split data safely
 
+        # Pehle "Loading..." type ka animation show karega
+        loading_msg = await query.message.reply_text("⏳ Processing...")
+
+        await asyncio.sleep(2)  # 2 sec ke liye wait karega
+
+        # Pehle wale loading message ko delete karega
+        await loading_msg.delete()
+
         if len(data_parts) < 2:
-            return await query.message.reply_text(
+            msg = await query.message.reply_text(
                 "🍿 If new movies & series are added, you'll be notified!\n\n"
                 "🔹 Join here: [🍿 All Movies Updates](https://t.me/moviesupdateshere)\n"
                 "🔹 Maintained by: [👨‍💻 Codex Bot Maker](https://t.me/codexbotmaker)"
-            )    
+            )
+        else:
+            msg = await query.message.edit(
+                "📌 Get your referral link below:",  
+            reply_markup=InlineKeyboardMarkup([
+                [InlineKeyboardButton("📌 GET YOUR REFERRAL LINK 📌", callback_data=f'free_premium({query.from_user.id})')],
+                [InlineKeyboardButton("< HOME >", callback_data='start')]
+            ])
+        )
 
-        return await query.message.edit(
-            "📌 Get your referral link below:",  # Point system nahi hai, isliye simple message
-        reply_markup=InlineKeyboardMarkup([
-            [InlineKeyboardButton("📌 GET YOUR REFERRAL LINK 📌", callback_data=f'free_premium({query.from_user.id})')],
-            [InlineKeyboardButton("< HOME >", callback_data='start')]
-        ]))
+    await asyncio.sleep(10)  # 10 sec ke baad message delete
+    return await msg.delete()
 	
     elif query.data == "premium":
         userid = query.from_user.id
