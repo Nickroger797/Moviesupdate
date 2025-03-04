@@ -681,7 +681,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
         return await query.message.edit(script.REF_LINK.format(temp.U_NAME , clicker , PREMIUM_POINT) , reply_markup=InlineKeyboardMarkup([
 	    [InlineKeyboardButton('⋞ ʜᴏᴍᴇ', callback_data='start')]
         ]))
-
+	
     elif query.data.startswith('point'):
         data_parts = query.data.split("*")  # Split data safely
 
@@ -702,22 +702,15 @@ async def cb_handler(client: Client, query: CallbackQuery):
         else:
             msg = await query.message.edit(
                 "📌 Get your referral link below:",  
-                reply_markup=InlineKeyboardMarkup([
-                    [
-                        InlineKeyboardButton(
-                            "📌 GET YOUR REFERRAL LINK 📌", callback_data=f'free_premium({query.from_user.id})'
-                        )
-                    ],
-                    [
-                        InlineKeyboardButton("< HOME >", callback_data='start')
-                    ]
-               ])
-	    )
-		    
+            reply_markup=InlineKeyboardMarkup([
+                [InlineKeyboardButton("📌 GET YOUR REFERRAL LINK 📌", callback_data=f'free_premium({query.from_user.id})')],
+                [InlineKeyboardButton("< HOME >", callback_data='start')]
+                ])
+            )
+
         await asyncio.sleep(10)  # 10 sec ke baad message delete
         return await msg.delete()
-        ]))
-	    
+	
     elif query.data == "premium":
         userid = query.from_user.id
         await query.message.edit(script.PREMIUM_TEXT , reply_markup=InlineKeyboardMarkup([
