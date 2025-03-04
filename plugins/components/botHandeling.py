@@ -8,11 +8,11 @@ async def update_post_mode(client, message):
     try:
         post_mode = await db.update_post_mode_handle()
         btn = [[
-        InlineKeyboardButton("ᴘᴏsᴛ ᴍᴏᴅᴇ ➜", callback_data="update_post_mode"),
+        InlineKeyboardButton("ᴘᴏsᴛ ᴍᴏᴅᴇ 🧨", callback_data="update_post_mode"),
         InlineKeyboardButton(f"{'sɪɴɢʟᴇ' if post_mode.get('singel_post_mode', True) else 'ᴍᴜʟᴛɪ'} ᴍᴏᴅᴇ", callback_data="change_update_post_mode"),
     ],
     [
-        InlineKeyboardButton("ᴜᴘʟᴏᴀᴅ ᴍᴏᴅᴇ ➜", callback_data="update_post_mode"),
+        InlineKeyboardButton("ᴜᴘʟᴏᴀᴅ ᴍᴏᴅᴇ 🍁", callback_data="update_post_mode"),
         InlineKeyboardButton(f"{'ᴀʟʟ' if post_mode.get('all_files_post_mode', True) else 'ɴᴇᴡ'} ғɪʟᴇs", callback_data="all_files_post_mode"),
     ]]
         reply_markup = InlineKeyboardMarkup(btn)
@@ -55,9 +55,9 @@ async def set_stream_link(client, message):
             await db.set_stream_link(link)
             await message.reply("Successfully set stream link!")
         else:
-            await message.reply("Usage: /stream https://t.me/Ott_Sandhu_Owner_bot or http://t.me/Ott_Sandhu_Owner_bot")
+            await message.reply("Usage: /stream https://t.me/autofilupdate_bot or http://t.me/autofilupdate_bot")
     except IndexError:
-        await message.reply("Usage: /stream https://t.me/Ott_Sandhu_Owner_bot or http://t.me/Ott_Sandhu_Owner_bot")
+        await message.reply("Usage: /stream https://t.me/autofilupdate_bot or http://t.me/autofilupdate_bot")
         return
 
 
