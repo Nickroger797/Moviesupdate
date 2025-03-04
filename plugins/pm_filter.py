@@ -801,7 +801,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             InlineKeyboardButton('💦 ɢᴇᴛ ᴘʀᴇᴍɪᴜᴍ ғʀᴇᴇ 💦', callback_data=f'free_premium#{query.from_user.id}')
         ],
         [
-            InlineKeyboardButton('🎭 ʏᴏᴜʀ ᴘᴏɪɴᴛs 💧', callback_data=f'point#{query.from_user.id}'),
+            InlineKeyboardButton('👀 Read Carefully 👀', callback_data=f'point#{query.from_user.id}'),
             InlineKeyboardButton('🫧 ᴀʙᴏᴜᴛ 🍁', callback_data=f'about')
         ],
         [
