@@ -684,11 +684,15 @@ async def cb_handler(client: Client, query: CallbackQuery):
 	
     elif query.data.startswith('point'):
         data_parts = query.data.split("*")  # Split data safely
-
-        if len(data_parts) < 2:	
-            return await query.answer("🍿If any new movies and series added in this bot database then you will notify\n🫧In this channel☞ [🍿All Movies Updates🍿](https://t.me/moviesupdateshere)\n\n\n🍃Maintained by:- [🍁Codex Bot Maker🍁](https://t.me/codexbotmaker)", show_alert=True)
     
-        clicker = int(data_parts[1])  # Extract user ID safely
+        if len(data_parts) < 2:
+            return await query.message.reply_text(
+                "🍿 If new movies & series are added, you'll be notified!\n\n"
+                "🔹 Join here: [🍿 All Movies Updates](https://t.me/moviesupdateshere)\n"
+                "🔹 Maintained by: [👨‍💻 Codex Bot Maker](https://t.me/codexbotmaker)"
+	    )    
+
+	clicker = int(data_parts[1])  # Extract user ID safely
 
         if clicker not in [query.from_user.id, 0]:  
             return await query.answer(
