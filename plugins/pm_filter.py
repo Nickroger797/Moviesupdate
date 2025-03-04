@@ -687,14 +687,8 @@ async def cb_handler(client: Client, query: CallbackQuery):
             return await query.answer(
             f"Hey {query.from_user.first_name}, Jaldi Yeha Se Hato", show_alert=True
             )
-        newPoint = await db.get_point(clicker)
-
-        # Debugging ke liye check karein ki newPoint ka data kya aa raha hai
-        print("New Point Data:", newPoint)
-
-        # Safe Access ke liye .get() ka use karein
         return newPoint.get('point', 0) if newPoint else 0
-
+	    
         return await query.message.edit(script.REF_POINT.format(newPoint) , reply_markup=InlineKeyboardMarkup([
                 [InlineKeyboardButton('🃏 ɢᴇᴛ ʏᴏᴜʀ ʀᴇғᴇʀʀᴀʟ ʟɪɴᴋ 🃏', callback_data=f'free_premium#{query.from_user.id}')],   
                 [InlineKeyboardButton('⋞ ʜᴏᴍᴇ', callback_data='start')],]))
