@@ -71,9 +71,9 @@ async def start(client:Client, message):
     emojis = ["🔥", "💥", "😍", "🤩", "🚀"]
     selected_emoji = random.choice(emojis)
     await message.react(emoji=selected_emoji)
-    loading_msg = await message.reply_text("⏳ Processing.")
+    loading_msg = await message.reply_text("🧨")
     await asyncio.sleep(0.3)
-    await loading_msg.edit_text("💦")
+    await loading_msg.edit_text("🧬")
     await asyncio.sleep(0.3)
     await loading_msg.edit_text("👀")
     await asyncio.sleep(1)
