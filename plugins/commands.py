@@ -68,6 +68,17 @@ async def tts(client, message):
         except:pass
 @Client.on_message(filters.command("start") & filters.incoming)
 async def start(client:Client, message): 
+    emojis = ["🔥", "💥", "😍", "🤩", "🚀"]
+    selected_emoji = random.choice(emojis)
+    await message.react(emoji=selected_emoji)
+    loading_msg = await message.reply_text("⏳ Processing.")
+    await asyncio.sleep(0.3)
+    await loading_msg.edit_text("💦")
+    await asyncio.sleep(0.3)
+    await loading_msg.edit_text("👀")
+    await asyncio.sleep(1)
+    await loading_msg.delete()
+
     pm_mode = False
     try:
          data = message.command[1]
