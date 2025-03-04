@@ -702,10 +702,16 @@ async def cb_handler(client: Client, query: CallbackQuery):
         else:
             msg = await query.message.edit(
                 "📌 Get your referral link below:",  
-            reply_markup=InlineKeyboardMarkup([
-                [InlineKeyboardButton("📌 GET YOUR REFERRAL LINK 📌", callback_data=f'free_premium({query.from_user.id})')],
-                [InlineKeyboardButton("< HOME >", callback_data='start')]
-	        ])
+                reply_markup=InlineKeyboardMarkup([
+                    [
+                        InlineKeyboardButton(
+                            "📌 GET YOUR REFERRAL LINK 📌", callback_data=f'free_premium({query.from_user.id})'
+                        )
+                    ],
+                    [
+                        InlineKeyboardButton("< HOME >", callback_data='start')
+                    ]
+               ])
 	    )
 		    
         await asyncio.sleep(10)  # 10 sec ke baad message delete
