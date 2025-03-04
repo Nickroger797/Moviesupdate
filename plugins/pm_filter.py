@@ -683,27 +683,30 @@ async def cb_handler(client: Client, query: CallbackQuery):
         ]))
 	
     elif query.data.startswith('point'):
-        clicker = int(query.data.split("*")[1])  # Extract user ID
+        data_parts = query.data.split("*")  # Split data safely
+
+        if len(data_parts) < 2:
+            return await query.answer("Invalid data received!", show_alert=True)
+
+        clicker = int(data_parts[1])  # Extract user ID safely
 
         if clicker not in [query.from_user.id, 0]:  
             return await query.answer(
             f"Hey {query.from_user.first_name}, Jaldi Yeha Se Hato", show_alert=True
             )
 
-        # 🛠️ Ensure newPoint is always defined
         newPoint = await db.get_point(clicker) or {}  
         print("New Point Data:", newPoint)  # Debugging print
 
-        # 🛠️ Safe access using `.get()`
-        point_value = newPoint.get('point', 0)  # Default 0 if key doesn't exist
+        point_value = newPoint.get('point', 0)  
 
         return await query.message.edit(
         script.REF_POINT.format(point_value),  
         reply_markup=InlineKeyboardMarkup([
-            [InlineKeyboardButton("🪄 GET YOUR REFERRAL LINK 🪄", callback_data=f'free_premium({query.from_user.id})')],
+            [InlineKeyboardButton("📌 GET YOUR REFERRAL LINK 📌", callback_data=f'free_premium({query.from_user.id})')],
             [InlineKeyboardButton("< HOME >", callback_data='start')]
         ]))
-	
+
     elif query.data == "premium":
         userid = query.from_user.id
         await query.message.edit(script.PREMIUM_TEXT , reply_markup=InlineKeyboardMarkup([
