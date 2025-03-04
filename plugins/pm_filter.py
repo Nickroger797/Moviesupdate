@@ -681,18 +681,29 @@ async def cb_handler(client: Client, query: CallbackQuery):
         return await query.message.edit(script.REF_LINK.format(temp.U_NAME , clicker , PREMIUM_POINT) , reply_markup=InlineKeyboardMarkup([
 	    [InlineKeyboardButton('⋞ ʜᴏᴍᴇ', callback_data='start')]
         ]))
+	
     elif query.data.startswith('point'):
-        clicker = int(query.data.split("#")[1])
-        if clicker not in [query.from_user.id, 0]:
+        clicker = int(query.data.split("*")[1])  # Extract user ID
+
+        if clicker not in [query.from_user.id, 0]:  
             return await query.answer(
             f"Hey {query.from_user.first_name}, Jaldi Yeha Se Hato", show_alert=True
             )
-        return newPoint.get('point', 0) if newPoint else 0
-	    
-        return await query.message.edit(script.REF_POINT.format(newPoint) , reply_markup=InlineKeyboardMarkup([
-                [InlineKeyboardButton('🃏 ɢᴇᴛ ʏᴏᴜʀ ʀᴇғᴇʀʀᴀʟ ʟɪɴᴋ 🃏', callback_data=f'free_premium#{query.from_user.id}')],   
-                [InlineKeyboardButton('⋞ ʜᴏᴍᴇ', callback_data='start')],]))
-        
+
+        # 🛠️ Ensure newPoint is always defined
+        newPoint = await db.get_point(clicker) or {}  
+        print("New Point Data:", newPoint)  # Debugging print
+
+        # 🛠️ Safe access using `.get()`
+        point_value = newPoint.get('point', 0)  # Default 0 if key doesn't exist
+
+        return await query.message.edit(
+        script.REF_POINT.format(point_value),  
+        reply_markup=InlineKeyboardMarkup([
+            [InlineKeyboardButton("🪄 GET YOUR REFERRAL LINK 🪄", callback_data=f'free_premium({query.from_user.id})')],
+            [InlineKeyboardButton("< HOME >", callback_data='start')]
+        ]))
+	
     elif query.data == "premium":
         userid = query.from_user.id
         await query.message.edit(script.PREMIUM_TEXT , reply_markup=InlineKeyboardMarkup([
