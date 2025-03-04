@@ -684,33 +684,21 @@ async def cb_handler(client: Client, query: CallbackQuery):
 	
     elif query.data.startswith('point'):
         data_parts = query.data.split("*")  # Split data safely
-    
+
         if len(data_parts) < 2:
             return await query.message.reply_text(
                 "🍿 If new movies & series are added, you'll be notified!\n\n"
                 "🔹 Join here: [🍿 All Movies Updates](https://t.me/moviesupdateshere)\n"
                 "🔹 Maintained by: [👨‍💻 Codex Bot Maker](https://t.me/codexbotmaker)"
-	    )    
-
-	clicker = int(data_parts[1])  # Extract user ID safely
-
-        if clicker not in [query.from_user.id, 0]:  
-            return await query.answer(
-            f"Hey {query.from_user.first_name}, Jaldi Yeha Se Hato", show_alert=True
-            )
-
-        newPoint = await db.get_point(clicker) or {}  
-        print("New Point Data:", newPoint)  # Debugging print
-
-        point_value = newPoint.get('point', 0)  
+            )    
 
         return await query.message.edit(
-        script.REF_POINT.format(point_value),  
+            "📌 Get your referral link below:",  # Point system nahi hai, isliye simple message
         reply_markup=InlineKeyboardMarkup([
             [InlineKeyboardButton("📌 GET YOUR REFERRAL LINK 📌", callback_data=f'free_premium({query.from_user.id})')],
             [InlineKeyboardButton("< HOME >", callback_data='start')]
         ]))
-
+	
     elif query.data == "premium":
         userid = query.from_user.id
         await query.message.edit(script.PREMIUM_TEXT , reply_markup=InlineKeyboardMarkup([
