@@ -8,7 +8,7 @@ from utils import get_file_id
 async def telegraph(bot, message):
     replied = message.reply_to_message
     if not replied:
-        await message.reply_text("⚠️ ʀᴇᴘʟʏ ᴛᴏ ᴀ ᴘʜᴏᴛᴏ ᴏʀ ᴠɪᴅᴇᴏ ᴜɴᴅᴇʀ 5 ᴍʙ")
+        await message.reply_text("🙄 ʀᴇᴘʟʏ ᴛᴏ ᴀ ᴘʜᴏᴛᴏ ᴏʀ ᴠɪᴅᴇᴏ ᴜɴᴅᴇʀ 5 ᴍʙ")
         return
     file_info = get_file_id(replied)
     if not file_info:
@@ -32,11 +32,11 @@ async def telegraph(bot, message):
     await msg.delete()
     await message.reply_photo(
         photo=f'https://graph.org{response[0]}',
-        caption=f"<b>ʏᴏᴜʀ ᴛᴇʟᴇɢʀᴀᴘʜ ʟɪɴᴋ ᴄᴏᴍᴘʟᴇᴛᴇᴅ 👇</b>\n\n<code>https://graph.org{response[0]}</code>\n\n<b>ᴘᴏᴡᴇʀᴇᴅ ʙʏ - @Baii_Ji</b>",       
+        caption=f"<b>ʏᴏᴜʀ ᴛᴇʟᴇɢʀᴀᴘʜ ʟɪɴᴋ ᴄᴏᴍᴘʟᴇᴛᴇᴅ 👇</b>\n\n<code>https://graph.org{response[0]}</code>\n\n<b>ᴘᴏᴡᴇʀᴇᴅ ʙʏ - @Codexownerr</b>",       
         reply_markup=InlineKeyboardMarkup( [[
-            InlineKeyboardButton(text="✓ ᴏᴘᴇɴ ʟɪɴᴋ ✓", url=f"https://graph.org{response[0]}"),
-            InlineKeyboardButton(text="📱 sʜᴀʀᴇ ʟɪɴᴋ", url=f"https://telegram.me/share/url?url=https://graph.org{response[0]}")
+            InlineKeyboardButton(text="💀 ᴏᴘᴇɴ ʟɪɴᴋ 💀", url=f"https://graph.org{response[0]}"),
+            InlineKeyboardButton(text="🪄 sʜᴀʀᴇ ʟɪɴᴋ", url=f"https://telegram.me/share/url?url=https://graph.org{response[0]}")
             ],[
-            InlineKeyboardButton(text="❌ ᴄʟᴏsᴇ ❌", callback_data="close_data")
+            InlineKeyboardButton(text="🍃 ᴄʟᴏsᴇ 🍃", callback_data="close_data")
             ]])
     )
