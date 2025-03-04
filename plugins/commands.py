@@ -374,6 +374,10 @@ async def start(client:Client, message):
 
 @Client.on_message(filters.command('delete'))
 async def delete(bot, message):
+    emojis = ["🔥", "🌪️", "🧨", "🪄", "💀"]
+    selected_emoji = random.choice(emojis)
+    await message.react(emoji=selected_emoji)
+    
     if message.from_user.id not in ADMINS:
         await message.reply('ᴏɴʟʏ ᴛʜᴇ ʙᴏᴛ ᴏᴡɴᴇʀ ᴄᴀɴ ᴜsᴇ ᴛʜɪs ᴄᴏᴍᴍᴀɴᴅ... 😑')
         return
@@ -478,6 +482,10 @@ async def settings(client, message):
 
 @Client.on_message(filters.command('set_template'))
 async def save_template(client, message):
+    emojis = ["🧬", "💀", "🎭", "⛄", "💫"]
+    selected_emoji = random.choice(emojis)
+    await message.react(emoji=selected_emoji)
+
     chat_type = message.chat.type
     if chat_type not in [enums.ChatType.GROUP, enums.ChatType.SUPERGROUP]:
         return await message.reply_text("<b>ᴜꜱᴇ ᴛʜɪꜱ ᴄᴏᴍᴍᴀɴᴅ ɪɴ ɢʀᴏᴜᴘ...</b>")
@@ -621,6 +629,10 @@ async def delete_files(bot, message):
 
 @Client.on_message(filters.command('set_caption'))
 async def save_caption(client, message):
+    emojis = ["😁", "🧬", "🎭", "🤩", "🤪"]
+    selected_emoji = random.choice(emojis)
+    await message.react(emoji=selected_emoji)
+    
     grp_id = message.chat.id
     title = message.chat.title
     if not await is_check_admin(client, grp_id, message.from_user.id):
@@ -637,6 +649,10 @@ async def save_caption(client, message):
     
 @Client.on_message(filters.command('set_tutorial'))
 async def save_tutorial(client, message):
+    emojis = ["😲", "😵‍💫", "🙃", "☺️", "🫡"]
+    selected_emoji = random.choice(emojis)
+    await message.react(emoji=selected_emoji)
+
     grp_id = message.chat.id
     title = message.chat.title
     chat_type = message.chat.type
@@ -721,6 +737,10 @@ async def set_shortner_2(c, m):
 
 @Client.on_message(filters.command('set_log_channel'))
 async def set_log(client, message):
+    emojis = ["🍁", "🔥", "🙂", "🤩", "🍿"]
+    selected_emoji = random.choice(emojis)
+    await message.react(emoji=selected_emoji)
+
     grp_id = message.chat.id
     title = message.chat.title
     if chat_type not in [enums.ChatType.GROUP, enums.ChatType.SUPERGROUP]:
@@ -757,6 +777,10 @@ async def set_log(client, message):
 
 @Client.on_message(filters.command('details'))
 async def all_settings(client, message):
+    emojis = ["🥲", "🤨", "😍", "🤗", "😬"]
+    selected_emoji = random.choice(emojis)
+    await message.react(emoji=selected_emoji)
+    
     grp_id = message.chat.id
     title = message.chat.title
     chat_type = message.chat.type
